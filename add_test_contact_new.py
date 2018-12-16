@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from selenium import webdriver
-import unittest
 from contact import Contact
 from application_contact import Application_Contact
 import pytest
