@@ -3,6 +3,7 @@ from contact import Contact
 from application_contact import Application_Contact
 import pytest
 
+
 @pytest.fixture
 def app (request):
     fixture = Application_Contact()
