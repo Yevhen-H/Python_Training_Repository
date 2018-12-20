@@ -10,11 +10,9 @@ class Application:
         self.session_contact = SessionHelper(self)
         self.contact = ContactHelper(self)
 
-
     def open_home_page(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/")
-
 
     def destroy(self):
         self.wd.quit()
