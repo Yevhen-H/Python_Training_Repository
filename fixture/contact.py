@@ -1,6 +1,7 @@
 from model.contact import Contact
 
 class ContactHelper:
+
     def __init__(self, app):
         self.app = app
 
@@ -11,13 +12,14 @@ class ContactHelper:
 
     def create_contact(self, contact):
         wd = self.app.wd
+        wd.find_element_by_link_text("add new").click()
         self.fill_contact_form(contact)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
+        self.return_to_the_home()
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
         if text is not None:
-            wd.find_element_by_link_text("add new").click()
             wd.find_element_by_name(field_name).click()
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
@@ -38,10 +40,8 @@ class ContactHelper:
     def delete_first_contact(self):
         wd = self.app.wd
         self.open_home_page()
-        # select first group
         self.select_first_contact()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
-        # submit deletion
         wd.switch_to_alert().accept()
         self.return_to_the_home()
 
