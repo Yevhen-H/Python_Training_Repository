@@ -34,9 +34,9 @@ class ContactHelper:
         self.change_field_value("mobile", contact.mobile)
         self.change_field_value("email", contact.email)
 
-    def select_first_contact(self):
+    def select_first_contact(self, index):
         wd = self.app.wd
-        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_name("selected[]")[index].click()
 
     def select_contact_by_index(self, index):
         wd = self.app.wd
@@ -61,7 +61,7 @@ class ContactHelper:
         wd = self.app.wd
         self.open_home_page()
         self.select_contact_by_index(index)
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        wd.find_element_by_xpath("//img[@alt='Edit']")[index].click()
         self.fill_contact_form(new_contact_data)
         wd.find_element_by_name("update").click()
         self.return_to_the_home()
@@ -87,7 +87,6 @@ class ContactHelper:
                 id = element.find_element_by_css_selector("td.center").find_element_by_name("selected[]").get_attribute(
                     "value")
                 lastname = element.find_element_by_xpath(".//td[2]").text
-
                 firstname = element.find_element_by_xpath(".//td[3]").text
                 self.contact_cache.append(Contact(lastname=lastname, name=firstname, id=id))
         return list(self.contact_cache)
